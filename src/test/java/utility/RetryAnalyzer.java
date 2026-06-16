@@ -18,6 +18,13 @@ public class RetryAnalyzer
         {
             count++;
 
+            System.out.println(
+                    "Retrying "
+                            + result.getName()
+                            + " | Attempt "
+                            + count
+            );
+
             return true;
         }
 
