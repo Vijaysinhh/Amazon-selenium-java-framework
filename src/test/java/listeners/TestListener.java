@@ -1,5 +1,6 @@
 package listeners;
-
+import base.BaseTest;
+import utility.ScreenshotUtil;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
@@ -24,11 +25,21 @@ public class TestListener implements ITestListener {
     }
 
     @Override
-    public void onTestFailure(ITestResult result)
+    public void onTestFailure(
+            ITestResult result)
     {
         System.out.println(
                 "FAILED: " +
                         result.getName()
+        );
+
+        BaseTest test =
+                (BaseTest) result
+                        .getInstance();
+
+        ScreenshotUtil.captureScreenshot(
+                test.getDriver(),
+                result.getName()
         );
     }
 

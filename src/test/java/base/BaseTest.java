@@ -19,6 +19,10 @@ protected WebDriver driver;
     driver.get("https://www.amazon.in/");
 
 }
+    public WebDriver getDriver()
+    {
+        return driver;
+    }
 @AfterMethod
 public void tearDown(){
     if(driver != null){

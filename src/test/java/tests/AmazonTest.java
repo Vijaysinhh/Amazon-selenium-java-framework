@@ -1,4 +1,5 @@
 package tests;
+
 import org.testng.annotations.Listeners;
 import listeners.TestListener;
 import base.BaseTest;
@@ -6,12 +7,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import utility.TestDataProvider;
+import utility.RetryAnalyzer;
+
 @Listeners(TestListener.class)
 public class AmazonTest extends BaseTest {
 
     @Test(
             dataProvider = "productData",
-            dataProviderClass = TestDataProvider.class
+            dataProviderClass =
+                    TestDataProvider.class,
+            retryAnalyzer =
+                    RetryAnalyzer.class
     )
     public void searchTest(
             String tcId,
@@ -30,8 +36,6 @@ public class AmazonTest extends BaseTest {
 
         homePage.searchProduct(product);
 
-        Assert.assertTrue(
-                homePage.isResultsDisplayed()
-        );
+        Assert.assertTrue(false);
     }
 }
