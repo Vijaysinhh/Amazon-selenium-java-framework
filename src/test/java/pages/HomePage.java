@@ -31,6 +31,11 @@ public class HomePage {
         driver.findElement(searchBox)
                 .sendKeys(product);
 
+        WaitUtils.waitForClickable(
+                driver,
+                searchButton
+        );
+
         driver.findElement(searchButton)
                 .click();
     }
