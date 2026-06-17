@@ -70,6 +70,21 @@ public class HomePage {
                 driver.findElement(searchButton)
         ).perform();
     }
+    public void rightClickSearchBox()
+    {
+        WaitUtils.waitForVisibility(
+                driver,
+                searchBox
+        );
+
+        Actions actions =
+                new Actions(driver);
+
+        actions.contextClick(
+                driver.findElement(searchBox)
+        ).perform();
+    }
+
     public boolean isResultsDisplayed()
     {
         WaitUtils.waitForVisibility(
