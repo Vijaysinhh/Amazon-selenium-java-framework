@@ -1,5 +1,5 @@
 package pages;
-
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utility.WaitUtils;
@@ -84,7 +84,29 @@ public class HomePage {
                 driver.findElement(searchBox)
         ).perform();
     }
+    public void keyboardActionsSearch(
+            String product)
+    {
+        WaitUtils.waitForVisibility(
+                driver,
+                searchBox
+        );
 
+        Actions actions =
+                new Actions(driver);
+
+        actions.click(
+                        driver.findElement(searchBox)
+                )
+                .sendKeys(product)
+                .keyDown(Keys.CONTROL)
+                .sendKeys("a")
+                .sendKeys("c")
+                .sendKeys("v")
+                .keyUp(Keys.CONTROL)
+                .sendKeys(Keys.ENTER)
+                .perform();
+    }
     public boolean isResultsDisplayed()
     {
         WaitUtils.waitForVisibility(

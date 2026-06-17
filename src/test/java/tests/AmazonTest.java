@@ -38,7 +38,7 @@ public class AmazonTest extends BaseTest {
 
         homePage.rightClickSearchBox();
 
-        homePage.searchProduct(product);
+        homePage.keyboardActionsSearch(product);
 
         Assert.assertTrue(
                 homePage.isResultsDisplayed()
