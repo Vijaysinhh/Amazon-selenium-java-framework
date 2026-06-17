@@ -33,6 +33,7 @@ public class AmazonTest extends BaseTest {
         driver.get(
                 "https://www.amazon.in/"
         );
+        homePage.hoverOverAccount();
 
         homePage.searchProduct(product);
 

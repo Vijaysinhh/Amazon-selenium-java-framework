@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utility.WaitUtils;
-
+import org.openqa.selenium.interactions.Actions;
 public class HomePage {
 
     WebDriver driver;
@@ -38,6 +38,23 @@ public class HomePage {
 
         driver.findElement(searchButton)
                 .click();
+    }
+    public void hoverOverAccount()
+    {
+        By accountMenu =
+                By.id("nav-link-accountList");
+
+        WaitUtils.waitForVisibility(
+                driver,
+                accountMenu
+        );
+
+        Actions actions =
+                new Actions(driver);
+
+        actions.moveToElement(
+                driver.findElement(accountMenu)
+        ).perform();
     }
     public boolean isResultsDisplayed()
     {
