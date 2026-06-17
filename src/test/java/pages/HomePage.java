@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utility.WaitUtils;
 
 public class HomePage {
 
@@ -23,6 +24,11 @@ public class HomePage {
 
     public void searchProduct(String product)
     {
+        WaitUtils.waitForVisibility(
+                driver,
+                driver.findElement(searchBox)
+        );
+
         driver.findElement(searchBox)
                 .sendKeys(product);
 
