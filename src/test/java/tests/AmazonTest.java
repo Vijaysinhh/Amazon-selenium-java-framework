@@ -34,7 +34,9 @@ public class AmazonTest extends BaseTest {
                 "https://www.amazon.in/"
         );
 
-        homePage.hoverOverAccount();
+
+
+        homePage.selectCategory("Books");
 
         homePage.rightClickSearchBox();
 

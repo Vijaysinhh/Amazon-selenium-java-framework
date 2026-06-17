@@ -4,9 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utility.WaitUtils;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 public class HomePage {
 
     WebDriver driver;
+    By categoryDropdown =
+            By.cssSelector("#searchDropdownBox");
 
     By searchBox =
             By.id("twotabsearchtextbox");
@@ -106,6 +109,25 @@ public class HomePage {
                 .keyUp(Keys.CONTROL)
                 .sendKeys(Keys.ENTER)
                 .perform();
+    }
+    public void selectCategory(
+            String category)
+    {
+        WaitUtils.waitForVisibility(
+                driver,
+                categoryDropdown
+        );
+
+        Select select =
+                new Select(
+                        driver.findElement(
+                                categoryDropdown
+                        )
+                );
+
+        select.selectByVisibleText(
+                category
+        );
     }
     public boolean isResultsDisplayed()
     {
