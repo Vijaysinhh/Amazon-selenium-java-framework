@@ -26,9 +26,8 @@ public class HomePage {
     {
         WaitUtils.waitForVisibility(
                 driver,
-                driver.findElement(searchBox)
+                searchBox
         );
-
         driver.findElement(searchBox)
                 .sendKeys(product);
 
