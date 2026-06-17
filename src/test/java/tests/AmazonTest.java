@@ -36,6 +36,8 @@ public class AmazonTest extends BaseTest {
 
         homePage.searchProduct(product);
 
-        Assert.assertTrue(false);
+        Assert.assertTrue(
+                homePage.isResultsDisplayed()
+        );
     }
 }

@@ -39,9 +39,13 @@ public class HomePage {
         driver.findElement(searchButton)
                 .click();
     }
-
     public boolean isResultsDisplayed()
     {
+        WaitUtils.waitForVisibility(
+                driver,
+                resultsText
+        );
+
         return driver.findElement(resultsText)
                 .isDisplayed();
     }
