@@ -56,6 +56,20 @@ public class HomePage {
                 driver.findElement(accountMenu)
         ).perform();
     }
+    public void doubleClickSearchButton()
+    {
+        WaitUtils.waitForClickable(
+                driver,
+                searchButton
+        );
+
+        Actions actions =
+                new Actions(driver);
+
+        actions.doubleClick(
+                driver.findElement(searchButton)
+        ).perform();
+    }
     public boolean isResultsDisplayed()
     {
         WaitUtils.waitForVisibility(

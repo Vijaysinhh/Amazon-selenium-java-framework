@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import utility.TestDataProvider;
 import utility.RetryAnalyzer;
-
+import org.openqa.selenium.By;
 @Listeners(TestListener.class)
 public class AmazonTest extends BaseTest {
 
@@ -35,7 +35,11 @@ public class AmazonTest extends BaseTest {
         );
         homePage.hoverOverAccount();
 
-        homePage.searchProduct(product);
+        driver.findElement(
+                By.id("twotabsearchtextbox")
+        ).sendKeys(product);
+
+        homePage.doubleClickSearchButton();
 
         Assert.assertTrue(
                 homePage.isResultsDisplayed()
