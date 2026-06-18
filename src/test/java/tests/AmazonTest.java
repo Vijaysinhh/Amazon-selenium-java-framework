@@ -34,13 +34,21 @@ public class AmazonTest extends BaseTest {
                 "https://www.amazon.in/"
         );
 
+        homePage.switchToLoginFrame();
 
+        homePage.enterEmail(
+                "test@gmail.com"
+        );
 
-        homePage.selectCategory("Books");
+        homePage.switchBackToMainPage();
 
-        homePage.rightClickSearchBox();
+        homePage.selectCategory(
+                "Books"
+        );
 
-        homePage.keyboardActionsSearch(product);
+        homePage.keyboardActionsSearch(
+                product
+        );
 
         Assert.assertTrue(
                 homePage.isResultsDisplayed()

@@ -1,13 +1,28 @@
 package pages;
-import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import utility.WaitUtils;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-public class HomePage {
+import utility.WaitUtils;
 
+public class HomePage
+{
     WebDriver driver;
+
+    // Frame locators
+    By loginFrame =
+            By.id("loginFrame");
+
+    By emailBox =
+            By.id("email");
+
+    // Page locators
+    By accountMenu =
+            By.id("nav-link-accountList");
+
     By categoryDropdown =
             By.cssSelector("#searchDropdownBox");
 
@@ -31,6 +46,7 @@ public class HomePage {
                 driver,
                 searchBox
         );
+
         driver.findElement(searchBox)
                 .sendKeys(product);
 
@@ -42,11 +58,9 @@ public class HomePage {
         driver.findElement(searchButton)
                 .click();
     }
+
     public void hoverOverAccount()
     {
-        By accountMenu =
-                By.id("nav-link-accountList");
-
         WaitUtils.waitForVisibility(
                 driver,
                 accountMenu
@@ -59,6 +73,7 @@ public class HomePage {
                 driver.findElement(accountMenu)
         ).perform();
     }
+
     public void doubleClickSearchButton()
     {
         WaitUtils.waitForClickable(
@@ -73,6 +88,7 @@ public class HomePage {
                 driver.findElement(searchButton)
         ).perform();
     }
+
     public void rightClickSearchBox()
     {
         WaitUtils.waitForVisibility(
@@ -87,8 +103,8 @@ public class HomePage {
                 driver.findElement(searchBox)
         ).perform();
     }
-    public void keyboardActionsSearch(
-            String product)
+
+    public void keyboardActionsSearch(String product)
     {
         WaitUtils.waitForVisibility(
                 driver,
@@ -110,8 +126,8 @@ public class HomePage {
                 .sendKeys(Keys.ENTER)
                 .perform();
     }
-    public void selectCategory(
-            String category)
+
+    public void selectCategory(String category)
     {
         WaitUtils.waitForVisibility(
                 driver,
@@ -127,6 +143,66 @@ public class HomePage {
 
         select.selectByVisibleText(
                 category
+        );
+    }
+
+    public void switchToLoginFrame()
+    {
+        WaitUtils.waitForVisibility(
+                driver,
+                loginFrame
+        );
+
+        driver.switchTo()
+                .frame(
+                        driver.findElement(
+                                loginFrame
+                        )
+                );
+    }
+
+    public void enterEmail(String email)
+    {
+        WaitUtils.waitForVisibility(
+                driver,
+                emailBox
+        );
+
+        driver.findElement(emailBox)
+                .sendKeys(email);
+    }
+
+    public void switchBackToMainPage()
+    {
+        driver.switchTo()
+                .defaultContent();
+    }
+    public void switchToNewTab()
+    {
+        String mainWindow =
+                driver.getWindowHandle();
+
+        for(String window :
+                driver.getWindowHandles())
+        {
+            if(!window.equals(mainWindow))
+            {
+                driver.switchTo()
+                        .window(window);
+
+                break;
+            }
+        }
+    }
+
+    public void jsClickSearchButton()
+    {
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                driver.findElement(searchButton)
         );
     }
     public boolean isResultsDisplayed()
